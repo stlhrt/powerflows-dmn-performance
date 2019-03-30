@@ -1,0 +1,42 @@
+id: loan_qualifier
+name: Loan qualifier
+hit-policy: COLLECT
+expression-type: FEEL
+fields:
+  in:
+    age:
+      type: INTEGER
+    activeLoansNumber:
+      description: Number of active loans on user's account
+      type: INTEGER
+      expression-type: LITERAL
+    startDate:
+      type: DATE
+  out:
+    loanAmount:
+      description: Loan amount in Euro
+      type: DOUBLE
+    loanTerm:
+      description: Loan term in months
+      type: INTEGER
+rules:
+  - description: Loan for 18 years
+    in:
+      age: 18
+      activeLoansNumber: 0
+      startDate: '[date and time("2019-01-01T12:00:00")..date and time("2019-12-31T12:00:00")]'
+    out:
+      loanAmount: 10000
+      loanTerm: 12
+  - in:
+      age: 18
+      startDate: '[date and time("2019-03-01T12:00:00")..date and time("2019-03-31T12:00:00")]'
+    out:
+      loanAmount: 15000
+      loanTerm: 6
+  - description: Loan for older than 18 years
+    in:
+      age: '>18'
+    out:
+      loanAmount: 20000
+      loanTerm: 12

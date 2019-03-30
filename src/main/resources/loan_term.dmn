@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_0lwlxof" name="DRD" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="loan_qualifier" name="Loan qualifier">
+    <decisionTable id="decisionTable_1" hitPolicy="COLLECT">
+      <input id="input_1" label="Age">
+        <inputExpression id="inputExpression_1" typeRef="integer">
+          <text>age</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_17nd0he" label="Number of active loans on user&#39;s account">
+        <inputExpression id="LiteralExpression_1u24w1p" typeRef="integer">
+          <text>activeLoansNumber</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0co3741" label="Start Date">
+        <inputExpression id="LiteralExpression_13au0lh" typeRef="date">
+          <text>startDate</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Loan Amount" name="loanAmount" typeRef="double" />
+      <output id="OutputClause_1prszvt" label="Loan term in months" name="loanTerm" typeRef="integer" />
+      <rule id="DecisionRule_1tjwvla">
+        <inputEntry id="UnaryTests_003npt6">
+          <text>18</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08tz99h">
+          <text>0</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01fofin">
+          <text>[date and time("2019-01-01T12:00:00")..date and time("2019-12-31T12:00:00")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15wbb1w">
+          <text>10000</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0o6wjir">
+          <text>12</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1gdz5oy">
+        <inputEntry id="UnaryTests_1c15fld">
+          <text>18</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17hcoz3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0df5hdv">
+          <text>[date and time("2019-03-01T12:00:00")..date and time("2019-03-31T12:00:00")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0x1r1ec">
+          <text>15000</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0734ue7">
+          <text>6</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1u3b0ey">
+        <inputEntry id="UnaryTests_0lrvypf">
+          <text>&gt;18</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0trmpfw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h3e3nt">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16zy9l0">
+          <text>20000</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1t72n6j">
+          <text>12</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
